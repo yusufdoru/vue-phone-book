@@ -1,15 +1,26 @@
 <template>
-  <input
-    type="text"
-    :value="value"
-    @input="$emit('input', $event.target.value)"
-  />
+  <Input v-model="phoneNumber" />
 </template>
 
 <script>
+import Input from "@/components/Input";
+
 export default {
   name: "PhoneNumber",
-  props: ["value"]
+  components: {
+    Input
+  },
+  data() {
+    return {
+      phoneNumber: ""
+    };
+  },
+  watch: {
+    phoneNumber() {
+      this.$store.commit("setPhoneNumber", this.phoneNumber);
+    }
+  },
+  methods: {}
 };
 </script>
 

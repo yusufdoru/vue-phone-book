@@ -34,15 +34,8 @@ body {
 #nav a {
   color: lightgray;
 }
-input {
-  outline: none;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid darkgray;
-  color: white;
-  background: #141414;
-}
 .separator {
+  margin: 15px 0;
   border-bottom: 1px solid lightgray;
 }
 </style>
