@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Input from "@/components/Input";
+import Input from "@/components/_shared/Input";
 
 export default {
   name: "PhoneNumber",

@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Input from "@/components/Input";
-import PhoneNumber from "@/components/PhoneNumber";
+import Input from "@/components/_shared/Input";
+import PhoneNumber from "@/components/_shared/PhoneNumber";
 
 export default {
   name: "ContactForm",
