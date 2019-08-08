@@ -1,16 +1,18 @@
 <template>
-  <div class="contact-form">
+  <form class="contact-form" @submit.prevent="onSubmitForm()">
     <label>
       <span class="title">Full Name</span>
       <span class="dot">:</span>
-      <Input v-model="fullName" />
+      <Input v-model="fullName" required />
     </label>
     <label>
       <span class="title">Phone Number</span>
       <span class="dot">:</span>
-      <PhoneNumber v-model="phoneNumber" />
+      <PhoneNumber v-model="phoneNumber" required />
     </label>
-  </div>
+
+    <button type="submit">Add Contact</button>
+  </form>
 </template>
 
 <script>
@@ -23,17 +25,21 @@ export default {
     Input,
     PhoneNumber
   },
-  computed: {
-    fullName: {
-      get() {
-        return this.$store.state.fullName;
-      },
-      set(value) {
-        this.$store.commit("setFullName", value);
-      }
-    },
-    phoneNumber() {
-      return this.$store.state.phoneNumber;
+  data() {
+    return {
+      fullName: "",
+      phoneNumber: ""
+    };
+  },
+  methods: {
+    onSubmitForm() {
+      this.$store.commit("addContact", {
+        fullName: this.fullName,
+        phoneNumber: this.phoneNumber
+      });
+
+      this.fullName = "";
+      this.phoneNumber = "";
     }
   }
 };
@@ -44,6 +50,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  width: 350px;
 }
 label {
   display: flex;

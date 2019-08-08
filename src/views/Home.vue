@@ -2,8 +2,11 @@
   <div class="home">
     <ContactForm />
     <div class="separator"></div>
-    <h4>Full Name: {{ fullName }}</h4>
-    <h4>Phone Number: {{ phoneNumber }}</h4>
+    <div v-for="(contact, key) in contacts" :key="key">
+      {{ contact.fullName }}<br />
+      {{ contact.phoneNumber }}<br />
+      <hr />
+    </div>
   </div>
 </template>
 
@@ -19,11 +22,8 @@ export default {
     return {};
   },
   computed: {
-    fullName() {
-      return this.$store.state.fullName;
-    },
-    phoneNumber() {
-      return this.$store.state.phoneNumber;
+    contacts() {
+      return this.$store.state.contacts;
     }
   }
 };

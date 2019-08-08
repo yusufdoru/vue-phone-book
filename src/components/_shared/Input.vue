@@ -1,21 +1,22 @@
 <template>
-  <input type="text" @input="$emit('input', $event.target.value)" />
+  <input type="text" v-model="val" />
 </template>
 
 <script>
 export default {
-  name: "Input"
+  name: "Input",
+  props: ["value"],
+  computed: {
+    val: {
+      get() {
+        return this.value;
+      },
+      set(newValue) {
+        this.$emit("input", newValue);
+      }
+    }
+  }
 };
 </script>
 
-<style scoped>
-input {
-  outline: none;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid darkgray;
-  color: white;
-  background: #141414;
-  min-width: 150px;
-}
-</style>
+<style scoped></style>

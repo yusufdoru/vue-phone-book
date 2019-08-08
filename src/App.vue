@@ -21,6 +21,21 @@ body {
   color: lightgray;
   font-size: 16px;
 }
+
+input,
+button,
+select {
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid darkgray;
+  color: white;
+  background: #141414;
+  min-width: 150px;
+}
+button {
+  cursor: pointer;
+}
 #app {
   padding: 25px;
 }

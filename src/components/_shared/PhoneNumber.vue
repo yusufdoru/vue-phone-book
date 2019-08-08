@@ -1,23 +1,28 @@
 <template>
-  <Input v-model="phoneNumber" />
+  <the-mask
+    v-model="phoneNumber"
+    mask="+## (###) ### ## ##"
+    :masked="true"
+    placeholder="+90 (555) 555 55 55"
+  ></the-mask>
 </template>
 
 <script>
-import Input from "@/components/_shared/Input";
-
 export default {
   name: "PhoneNumber",
-  components: {
-    Input
-  },
+  components: {},
+  props: ["value"],
   data() {
-    return {
-      phoneNumber: ""
-    };
+    return {};
   },
-  watch: {
-    phoneNumber() {
-      this.$store.commit("setPhoneNumber", this.phoneNumber);
+  computed: {
+    phoneNumber: {
+      get() {
+        return this.value;
+      },
+      set(newValue) {
+        this.$emit("input", newValue);
+      }
     }
   },
   methods: {}

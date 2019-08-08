@@ -5,15 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    fullName: "",
-    phoneNumber: ""
+    contacts: []
   },
   mutations: {
-    setFullName(state, payload) {
-      state.fullName = payload;
-    },
-    setPhoneNumber(state, payload) {
-      state.phoneNumber = payload;
+    addContact(state, payload) {
+      state.contacts.push(payload);
     }
   },
   actions: {}
