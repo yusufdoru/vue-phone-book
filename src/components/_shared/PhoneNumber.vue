@@ -3,7 +3,7 @@
     v-model="phoneNumber"
     mask="+## (###) ### ## ##"
     :masked="true"
-    placeholder="+90 (555) 555 55 55"
+    placeholder="+90 (000) 000 000 00"
   ></the-mask>
 </template>
 

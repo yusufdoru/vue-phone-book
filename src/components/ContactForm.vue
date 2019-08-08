@@ -3,7 +3,7 @@
     <label>
       <span class="title">Full Name</span>
       <span class="dot">:</span>
-      <Input v-model="fullName" required />
+      <Input v-model="fullName" placeholder="Name Surname" required />
     </label>
     <label>
       <span class="title">Phone Number</span>
@@ -25,43 +25,59 @@ export default {
     Input,
     PhoneNumber
   },
-  data() {
-    return {
-      fullName: "",
-      phoneNumber: ""
-    };
+  computed: {
+    fullName: {
+      get() {
+        return this.$store.state.contact.fullName;
+      },
+      set(newValue) {
+        this.$store.commit("SET_FULL_NAME", newValue);
+      }
+    },
+    phoneNumber: {
+      get() {
+        return this.$store.state.contact.phoneNumber;
+      },
+      set(newValue) {
+        this.$store.commit("SET_PHONE_NUMBER", newValue);
+      }
+    }
   },
   methods: {
     onSubmitForm() {
-      this.$store.commit("addContact", {
-        fullName: this.fullName,
-        phoneNumber: this.phoneNumber
-      });
+      if (this.phoneNumber.length !== 19) {
+        return;
+      }
 
-      this.fullName = "";
-      this.phoneNumber = "";
+      this.$store.commit("ADD_CONTACT");
+      this.$store.commit("SET_FULL_NAME", "");
+      this.$store.commit("SET_PHONE_NUMBER", "");
     }
   }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .contact-form {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   margin-bottom: 15px;
-  width: 350px;
-}
-label {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-.title {
-  min-width: 150px;
-  display: inline-block;
-}
-.dot {
-  min-width: 30px;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .title {
+    flex: 0.6;
+  }
+  .dot {
+    flex: 0.1;
+  }
+  input {
+    flex: 0.9;
+  }
 }
 </style>
