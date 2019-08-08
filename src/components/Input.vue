@@ -16,5 +16,6 @@ input {
   border: 1px solid darkgray;
   color: white;
   background: #141414;
+  min-width: 150px;
 }
 </style>
