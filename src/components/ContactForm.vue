@@ -70,6 +70,7 @@ export default {
   }
   .title {
     flex: 0.6;
+    min-width: 110px;
   }
   .dot {
     flex: 0.1;
