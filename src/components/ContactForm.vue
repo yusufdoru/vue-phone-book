@@ -3,7 +3,7 @@
     <label>
       <span class="title">Full Name</span>
       <span class="dot">:</span>
-      <Input v-model="fullName" placeholder="Name Surname" required />
+      <input v-model="fullName" placeholder="Name Surname" required />
     </label>
     <label>
       <span class="title">Phone Number</span>
@@ -16,13 +16,11 @@
 </template>
 
 <script>
-import Input from "@/components/_shared/Input";
 import PhoneNumber from "@/components/_shared/PhoneNumber";
 
 export default {
   name: "ContactForm",
   components: {
-    Input,
     PhoneNumber
   },
   computed: {
