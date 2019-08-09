@@ -78,6 +78,7 @@ header {
   justify-self: flex-start;
   align-self: center;
   padding-left: 15px;
+  font-size: 1em;
 }
 
 #nav {

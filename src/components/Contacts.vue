@@ -1,7 +1,8 @@
 <template>
   <div>
     <h2>Contacts</h2>
-    <ul class="contacts">
+    <div v-if="!contacts.length">No record(s) found.</div>
+    <ul v-else class="contacts">
       <li v-for="(contact, key) in contacts" :key="key">
         <p>Full Name: {{ contact.fullName }}</p>
         <p>Phone Number: {{ contact.phoneNumber }}</p>

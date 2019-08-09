@@ -78,4 +78,20 @@ export default {
     flex: 0.9;
   }
 }
+@media (min-width: 320px) and (max-width: 450px) {
+  .contact-form {
+    label {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .title {
+      margin-bottom: 15px;
+    }
+    .dot {
+      display: none;
+    }
+    input {
+    }
+  }
+}
 </style>
