@@ -4,6 +4,7 @@
       <h2>Contact Groups</h2>
     </div>
     <div class="content">
+      <Contacts></Contacts>
       <ul class="contacts">
         <li v-for="(contact, key) in contacts" :key="key">
           <p>Full Name: {{ contact.fullName }}</p>
@@ -12,27 +13,24 @@
       </ul>
     </div>
     <div class="right">
-      <h2>Add / Update Contact Form</h2>
+      <h2>Add Contact Form</h2>
       <ContactForm />
     </div>
   </div>
 </template>
 
 <script>
+import Contacts from "@/components/Contacts";
 import ContactForm from "@/components/ContactForm";
 
 export default {
   name: "home",
   components: {
+    Contacts,
     ContactForm
   },
   data() {
     return {};
-  },
-  computed: {
-    contacts() {
-      return this.$store.state.contacts;
-    }
   }
 };
 </script>
@@ -40,6 +38,7 @@ export default {
 <style lang="scss">
 .home {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 
   > div {
@@ -52,22 +51,27 @@ export default {
   }
   .content {
     flex: 2;
-    margin: 0 15px;
+    margin: 0 25px;
   }
   .right {
     flex: 1;
   }
 }
-.contacts {
-  li {
-    list-style: none;
-    border: 1px solid lightgray;
-    border-radius: 15px;
-    padding: 15px;
-    margin: 15px 0;
 
-    p {
-      margin: 10px 0;
+@media screen and (max-width: 900px) {
+  .home {
+    flex-direction: column;
+    > div {
+      margin-bottom: 25px;
+    }
+    .left {
+    }
+    .content {
+      flex: 1;
+      margin: 0;
+      margin-bottom: 25px;
+    }
+    .right {
     }
   }
 }

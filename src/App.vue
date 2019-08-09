@@ -24,7 +24,6 @@ body {
   background: #141414;
   color: lightgray;
   font-size: 16px;
-  padding: 0 200px;
 }
 
 input,
@@ -60,10 +59,6 @@ h2 {
   border-bottom: 1px solid darkgray;
 }
 
-#app {
-  padding: 25px;
-}
-
 header {
   display: flex;
   flex-direction: row;
@@ -71,8 +66,12 @@ header {
   background: #353535;
   border-radius: 10px;
   height: 60px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   text-align: center;
+}
+
+#app {
+  padding: 25px;
 }
 
 .site-title {
