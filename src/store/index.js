@@ -1,12 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { ADD_CONTACT, SET_FULL_NAME, SET_PHONE_NUMBER } from "./mutation-types";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    contacts: [],
+    editContactIndex: -1,
+    contacts: [
+      {
+        fullName: "Yusuf Doru",
+        phoneNumber: "+90 (530) 555 66 77"
+      }
+    ],
     contactsGroups: [],
     contact: {
       fullName: "",
@@ -14,13 +19,38 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    [ADD_CONTACT](state) {
+    addContact(state) {
       state.contacts.push({ ...state.contact });
     },
-    [SET_FULL_NAME](state, payload) {
+    editContact(state, index) {
+      state.editContactIndex = index;
+
+      if (index !== -1) {
+        const { fullName, phoneNumber } = state.contacts[index];
+
+        state.contact = { fullName, phoneNumber };
+      } else {
+        state.contact = { fullName: "", phoneNumber: "" };
+      }
+    },
+    updateContact(state) {
+      state.contacts = state.contacts.map((c, i) => {
+        if (state.editContactIndex === i) {
+          return Object.assign({}, state.contact);
+        }
+
+        return c;
+      });
+
+      state.editContactIndex = -1;
+    },
+    deleteContact(state, index) {
+      state.contacts.splice(index, 1);
+    },
+    setFullName(state, payload) {
       state.contact.fullName = payload;
     },
-    [SET_PHONE_NUMBER](state, payload) {
+    setPhoneNumber(state, payload) {
       state.contact.phoneNumber = payload;
     }
   },

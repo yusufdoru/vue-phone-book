@@ -37,9 +37,6 @@ select {
   background: #141414;
   min-width: 150px;
 
-  &:focus {
-    background: gray;
-  }
   &::placeholder {
     color: lightgray;
   }
@@ -51,6 +48,12 @@ button {
   &:hover {
     background: gray;
   }
+}
+
+.btn-mini {
+  font-size: 12px;
+  padding: 5px;
+  min-width: auto;
 }
 
 h2 {
@@ -108,5 +111,11 @@ header {
 .separator {
   margin: 15px 0;
   border-bottom: 1px solid lightgray;
+}
+.warning {
+  background: darkorange;
+}
+.danger {
+  background: red;
 }
 </style>

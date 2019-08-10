@@ -1,35 +1,53 @@
 <template>
-  <form class="contact-form" @submit.prevent="onSubmitForm()">
-    <label>
-      <span class="title">Full Name</span>
-      <span class="dot">:</span>
-      <input v-model="fullName" placeholder="Name Surname" required />
-    </label>
-    <label>
-      <span class="title">Phone Number</span>
-      <span class="dot">:</span>
-      <PhoneNumber v-model="phoneNumber" required />
-    </label>
+  <div>
+    <h2>{{ editMode ? "Update" : "Add" }} Contact Form</h2>
+    <form class="contact-form" @submit.prevent="onSubmitForm()">
+      <label>
+        <span class="title">Full Name</span>
+        <span class="dot">:</span>
+        <input v-model="fullName" placeholder="Name Surname" required />
+      </label>
+      <label>
+        <span class="title">Phone Number</span>
+        <span class="dot">:</span>
+        <PhoneNumber v-model="phoneNumber" required />
+      </label>
 
-    <button type="submit">Add Contact</button>
-  </form>
+      <div class="actions">
+        <button
+          v-if="editMode"
+          type="button"
+          class="cancel-btn warning"
+          @click="editContact(-1)"
+        >
+          Cancel
+        </button>
+        <button type="submit">{{ editMode ? "Update" : "Add" }} Contact</button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
 import PhoneNumber from "@/components/_shared/PhoneNumber";
+import { mapMutations } from "vuex";
 
 export default {
   name: "ContactForm",
   components: {
     PhoneNumber
   },
+
   computed: {
+    editMode() {
+      return this.$store.state.editContactIndex !== -1;
+    },
     fullName: {
       get() {
         return this.$store.state.contact.fullName;
       },
       set(newValue) {
-        this.$store.commit("SET_FULL_NAME", newValue);
+        this.setFullName(newValue);
       }
     },
     phoneNumber: {
@@ -37,19 +55,31 @@ export default {
         return this.$store.state.contact.phoneNumber;
       },
       set(newValue) {
-        this.$store.commit("SET_PHONE_NUMBER", newValue);
+        this.setPhoneNumber(newValue);
       }
     }
   },
   methods: {
+    ...mapMutations([
+      "setFullName",
+      "setPhoneNumber",
+      "addContact",
+      "editContact",
+      "updateContact"
+    ]),
     onSubmitForm() {
       if (this.phoneNumber.length !== 19) {
         return;
       }
 
-      this.$store.commit("ADD_CONTACT");
-      this.$store.commit("SET_FULL_NAME", "");
-      this.$store.commit("SET_PHONE_NUMBER", "");
+      if (this.editContactIndex !== -1) {
+        this.updateContact();
+      } else {
+        this.addContact();
+      }
+
+      this.setFullName("");
+      this.setPhoneNumber("");
     }
   }
 };
@@ -77,6 +107,13 @@ export default {
   }
   input {
     flex: 0.9;
+  }
+}
+.actions {
+  display: flex;
+
+  button {
+    flex: 1;
   }
 }
 @media (min-width: 320px) and (max-width: 450px) {

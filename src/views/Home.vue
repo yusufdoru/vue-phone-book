@@ -8,7 +8,6 @@
       <Contacts></Contacts>
     </div>
     <div class="right">
-      <h2>Add Contact Form</h2>
       <ContactForm />
     </div>
   </div>
