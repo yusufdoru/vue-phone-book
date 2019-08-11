@@ -1,10 +1,12 @@
 <template>
   <div>
     <h2>Contact Groups</h2>
-    <div v-if="!items.length" class="no-record">No record(s) found.</div>
+    <div v-if="!contactGroups.length" class="no-record">
+      No record(s) found.
+    </div>
     <ul v-else class="contact-groups">
       <ContactGroupListItem
-        v-for="(item, index) in items"
+        v-for="(item, index) in contactGroups"
         :key="index"
         :item="item"
       ></ContactGroupListItem>
@@ -16,7 +18,8 @@
 <script>
 import ContactGroupForm from "./Form";
 import ContactGroupListItem from "./Item";
-import { mapMutations } from "vuex";
+
+import { mapState } from "vuex";
 
 export default {
   name: "ContactGroups",
@@ -25,13 +28,11 @@ export default {
     return {};
   },
   computed: {
-    items() {
-      return this.$store.state.contactGroups;
-    }
+    ...mapState("contactGroup", {
+      contactGroups: state => state.items
+    })
   },
-  methods: {
-    ...mapMutations(["deleteContactGroup"])
-  }
+  methods: {}
 };
 </script>
 

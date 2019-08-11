@@ -4,7 +4,7 @@
       <ContactGroupList></ContactGroupList>
     </div>
     <div class="content">
-      <Contacts></Contacts>
+      <ContactList></ContactList>
     </div>
     <div class="right">
       <ContactForm />
@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import Contacts from "@/components/Contacts";
+import ContactList from "@/components/Contact/List";
+import ContactForm from "@/components/Contact/Form";
 import ContactGroupList from "@/components/ContactGroup/List";
-import ContactForm from "@/components/ContactForm";
 
 export default {
   name: "home",
   components: {
-    Contacts,
+    ContactList,
     ContactGroupList,
     ContactForm
   },

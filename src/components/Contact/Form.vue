@@ -5,18 +5,18 @@
       <label>
         <span class="title">Full Name</span>
         <span class="dot">:</span>
-        <input v-model="fullName" placeholder="Name Surname" required />
+        <input v-model="contact.fullName" placeholder="Name Surname" required />
       </label>
       <label>
         <span class="title">Phone Number</span>
         <span class="dot">:</span>
-        <PhoneNumber v-model="phoneNumber" required />
+        <PhoneNumber v-model="contact.phoneNumber" required />
       </label>
       <label>
         <span class="title">Group</span>
         <span class="dot">:</span>
-        <select v-model="group" required>
-          <option :value="null">Choose</option>
+        <select v-model="contact.group">
+          <option :value="null">Ungrouped</option>
           <option
             v-for="group in contactGroups"
             :value="group.id"
@@ -44,7 +44,8 @@
 
 <script>
 import PhoneNumber from "@/components/_shared/PhoneNumber";
-import { mapMutations } from "vuex";
+import { createId } from "@/helpers";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "ContactForm",
@@ -52,60 +53,27 @@ export default {
     PhoneNumber
   },
   computed: {
-    contactGroups() {
-      return this.$store.state.contactGroups;
-    },
-    editMode() {
-      return this.$store.state.editContactIndex !== -1;
-    },
-    fullName: {
-      get() {
-        return this.$store.state.contact.fullName;
-      },
-      set(newValue) {
-        this.setFullName(newValue);
-      }
-    },
-    phoneNumber: {
-      get() {
-        return this.$store.state.contact.phoneNumber;
-      },
-      set(newValue) {
-        this.setPhoneNumber(newValue);
-      }
-    },
-    group: {
-      get() {
-        return this.$store.state.contact.group;
-      },
-      set(newValue) {
-        this.setGroup(newValue);
-      }
-    }
+    ...mapState("contact", {
+      contact: state => state.model,
+      editMode: state => !!state.model.id
+    }),
+    ...mapState("contactGroup", {
+      contactGroups: state => state.items
+    })
   },
   methods: {
-    ...mapMutations([
-      "setFullName",
-      "setPhoneNumber",
-      "setGroup",
-      "addContact",
-      "editContact",
-      "updateContact"
-    ]),
+    ...mapMutations("contact", ["addContact", "editContact", "updateContact"]),
     onSubmitForm() {
-      if (this.phoneNumber.length !== 19) {
+      if (this.contact.phoneNumber.length !== 19) {
         return;
       }
 
       if (this.editMode) {
         this.updateContact();
       } else {
+        this.contact.id = createId();
         this.addContact();
       }
-
-      this.setFullName("");
-      this.setPhoneNumber("");
-      this.setGroup(null);
     }
   }
 };
@@ -131,7 +99,8 @@ export default {
   .dot {
     flex: 0.1;
   }
-  input {
+  input,
+  select {
     flex: 0.9;
   }
 }

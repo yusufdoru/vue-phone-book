@@ -1,9 +1,9 @@
 <template>
   <li>
     <div>
-      <p :style="{ background: item.color }" class="name">
-        {{ item.name }}
-      </p>
+      <p><b>Full Name:</b> {{ item.fullName }}</p>
+      <p><b>Phone Number:</b> {{ item.phoneNumber }}</p>
+      <p><b>Group:</b> {{ item.group }}</p>
     </div>
     <div class="actions">
       <button
@@ -24,34 +24,34 @@
 import { mapState, mapMutations } from "vuex";
 
 export default {
-  name: "ContactGroupListItem",
+  name: "ContactListItem",
   components: {},
   props: ["item"],
   data() {
     return {};
   },
   computed: {
-    ...mapState("contactGroup", {
+    ...mapState("contact", {
       editMode(state) {
         return state.model.id === this.item.id;
       }
     })
   },
   methods: {
-    ...mapMutations("contactGroup", ["editContactGroup", "deleteContactGroup"]),
+    ...mapMutations("contact", ["editContact", "deleteContact"]),
 
     handleEditItem(item) {
       if (this.editMode) {
-        this.editContactGroup(null);
+        this.editContact(null);
       } else {
-        this.editContactGroup(item);
+        this.editContact(item);
       }
     },
     handleDeleteItem(item) {
       const isOkey = confirm("It will be removed? Are you sure?");
 
       if (isOkey) {
-        this.deleteContactGroup(item);
+        this.deleteContact(item);
       }
     }
   }

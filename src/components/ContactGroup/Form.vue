@@ -4,17 +4,13 @@
       <label>
         <span class="title">Group Name</span>
         <span class="dot">:</span>
-        <input
-          v-model="$store.state.contactGroup.name"
-          placeholder=""
-          required
-        />
+        <input v-model="contactGroup.name" placeholder="" required />
       </label>
       <label>
         <span class="title">Group Color</span>
         <span class="dot">:</span>
         <input
-          v-model="$store.state.contactGroup.color"
+          v-model="contactGroup.color"
           type="color"
           placeholder="Group Color"
           required
@@ -48,28 +44,19 @@ export default {
     return {};
   },
   computed: {
-    ...mapState({
-      groupId: state => state.contactGroup.id,
-      name: state => state.contactGroup.name,
-      color: state => state.contactGroup.color,
-      editMode: state => !!state.contactGroup.id
+    ...mapState("contactGroup", {
+      contactGroup: state => state.model,
+      editMode: state => !!state.model.id
     })
   },
   methods: {
-    ...mapMutations(["addContactGroup", "updateContactGroup"]),
-    clear() {
-      this.name = "";
-      this.color = "";
-    },
+    ...mapMutations("contactGroup", ["addContactGroup", "updateContactGroup"]),
     onSubmitForm() {
-      const { name, color } = this;
-
       if (this.editMode) {
-        this.updateContactGroup({ id: this.groupId, name, color });
+        this.updateContactGroup();
       } else {
-        const id = createId();
-        const record = { id, name, color };
-        this.addContactGroup(record);
+        this.contactGroup = createId();
+        this.addContactGroup();
       }
     }
   }
