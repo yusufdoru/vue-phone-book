@@ -12,6 +12,20 @@
         <span class="dot">:</span>
         <PhoneNumber v-model="phoneNumber" required />
       </label>
+      <label>
+        <span class="title">Group</span>
+        <span class="dot">:</span>
+        <select v-model="group" required>
+          <option :value="null">Choose</option>
+          <option
+            v-for="group in contactGroups"
+            :value="group.id"
+            :key="group.id"
+          >
+            {{ group.name }}
+          </option>
+        </select>
+      </label>
 
       <div class="actions">
         <button
@@ -37,8 +51,10 @@ export default {
   components: {
     PhoneNumber
   },
-
   computed: {
+    contactGroups() {
+      return this.$store.state.contactGroups;
+    },
     editMode() {
       return this.$store.state.editContactIndex !== -1;
     },
@@ -57,12 +73,21 @@ export default {
       set(newValue) {
         this.setPhoneNumber(newValue);
       }
+    },
+    group: {
+      get() {
+        return this.$store.state.contact.group;
+      },
+      set(newValue) {
+        this.setGroup(newValue);
+      }
     }
   },
   methods: {
     ...mapMutations([
       "setFullName",
       "setPhoneNumber",
+      "setGroup",
       "addContact",
       "editContact",
       "updateContact"
@@ -72,7 +97,7 @@ export default {
         return;
       }
 
-      if (this.editContactIndex !== -1) {
+      if (this.editMode) {
         this.updateContact();
       } else {
         this.addContact();
@@ -80,6 +105,7 @@ export default {
 
       this.setFullName("");
       this.setPhoneNumber("");
+      this.setGroup(null);
     }
   }
 };

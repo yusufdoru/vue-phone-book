@@ -7,6 +7,7 @@
         <div>
           <p><b>Full Name:</b> {{ contact.fullName }}</p>
           <p><b>Phone Number:</b> {{ contact.phoneNumber }}</p>
+          <p><b>Group:</b> {{ contact.group }}</p>
         </div>
         <div class="actions">
           <button
@@ -34,6 +35,9 @@ export default {
   computed: {
     contacts() {
       return this.$store.state.contacts;
+    },
+    contactGroups() {
+      return this.$store.state.contactGroups;
     },
     editContactIndex() {
       return this.$store.state.editContactIndex;

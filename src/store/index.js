@@ -9,16 +9,40 @@ export default new Vuex.Store({
     contacts: [
       {
         fullName: "Yusuf Doru",
-        phoneNumber: "+90 (530) 555 66 77"
+        phoneNumber: "+90 (530) 555 66 77",
+        group: "20052019-0602-1508-Infinity-Infinity"
       }
     ],
-    contactsGroups: [],
+    contactGroups: [
+      {
+        id: "20052019-0602-1508-Infinity-Infinity",
+        name: "Family",
+        color: "red"
+      }
+    ],
     contact: {
       fullName: "",
-      phoneNumber: ""
+      phoneNumber: "",
+      group: null
     }
   },
   mutations: {
+    addContactGroup(state, payload) {
+      state.contactGroups.push({ ...payload });
+    },
+    updateContactGroup(state, payload) {
+      state.contactGroups = state.contactGroups.map(c => {
+        if (payload.id === c.id) {
+          return Object.assign({}, payload);
+        }
+        return c;
+      });
+    },
+    deleteContactGroup(state, payload) {
+      state.contactGroups = state.contactGroups.filter(
+        c => c.id !== payload.id
+      );
+    },
     addContact(state) {
       state.contacts.push({ ...state.contact });
     },
@@ -26,11 +50,11 @@ export default new Vuex.Store({
       state.editContactIndex = index;
 
       if (index !== -1) {
-        const { fullName, phoneNumber } = state.contacts[index];
+        const { fullName, phoneNumber, group } = state.contacts[index];
 
-        state.contact = { fullName, phoneNumber };
+        state.contact = { fullName, phoneNumber, group };
       } else {
-        state.contact = { fullName: "", phoneNumber: "" };
+        state.contact = { fullName: "", phoneNumber: "", group: null };
       }
     },
     updateContact(state) {
@@ -52,6 +76,9 @@ export default new Vuex.Store({
     },
     setPhoneNumber(state, payload) {
       state.contact.phoneNumber = payload;
+    },
+    setGroup(state, payload) {
+      state.contact.group = payload;
     }
   },
   actions: {}

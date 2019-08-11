@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <div class="left">
-      <h2>Contact Groups</h2>
-      <div>No record(s) found.</div>
+      <ContactGroups></ContactGroups>
     </div>
     <div class="content">
       <Contacts></Contacts>
@@ -15,12 +14,14 @@
 
 <script>
 import Contacts from "@/components/Contacts";
+import ContactGroups from "@/components/ContactGroups";
 import ContactForm from "@/components/ContactForm";
 
 export default {
   name: "home",
   components: {
     Contacts,
+    ContactGroups,
     ContactForm
   },
   data() {
