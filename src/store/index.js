@@ -3,40 +3,54 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-    editContactIndex: -1,
-    contacts: [
-      {
-        fullName: "Yusuf Doru",
-        phoneNumber: "+90 (530) 555 66 77",
-        group: "20052019-0602-1508-Infinity-Infinity"
-      }
-    ],
-    contactGroups: [
-      {
-        id: "20052019-0602-1508-Infinity-Infinity",
-        name: "Family",
-        color: "red"
-      }
-    ],
-    contact: {
-      fullName: "",
-      phoneNumber: "",
-      group: null
+const initialState = {
+  editContactIndex: -1,
+  contacts: [
+    {
+      fullName: "Yusuf Doru",
+      phoneNumber: "+90 (530) 555 66 77",
+      group: "20052019-0602-1508-Infinity-Infinity"
     }
+  ],
+  contactGroups: [
+    {
+      id: "20052019-0602-1508-Infinity-Infinity",
+      name: "Family",
+      color: "red"
+    }
+  ],
+  contact: {
+    fullName: null,
+    phoneNumber: null,
+    group: null
   },
+  contactGroup: {
+    id: null,
+    name: null,
+    color: null
+  }
+};
+
+export default new Vuex.Store({
+  state: JSON.parse(JSON.stringify(initialState)),
   mutations: {
     addContactGroup(state, payload) {
       state.contactGroups.push({ ...payload });
     },
+    editContactGroup(state, item) {
+      state.contactGroup = item
+        ? { ...item }
+        : { ...initialState.contactGroup };
+    },
     updateContactGroup(state, payload) {
       state.contactGroups = state.contactGroups.map(c => {
-        if (payload.id === c.id) {
+        if (state.contactGroup.id === c.id) {
           return Object.assign({}, payload);
         }
         return c;
       });
+
+      state.contactGroup = { ...initialState.contactGroup };
     },
     deleteContactGroup(state, payload) {
       state.contactGroups = state.contactGroups.filter(

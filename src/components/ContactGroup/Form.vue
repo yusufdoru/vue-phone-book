@@ -4,13 +4,17 @@
       <label>
         <span class="title">Group Name</span>
         <span class="dot">:</span>
-        <input v-model="name" placeholder="" required />
+        <input
+          v-model="$store.state.contactGroup.name"
+          placeholder=""
+          required
+        />
       </label>
       <label>
         <span class="title">Group Color</span>
         <span class="dot">:</span>
         <input
-          v-model="color"
+          v-model="$store.state.contactGroup.color"
           type="color"
           placeholder="Group Color"
           required
@@ -19,16 +23,14 @@
 
       <div class="actions">
         <button
-          v-if="contactGroup"
+          v-if="editMode"
           type="button"
           class="cancel-btn warning"
-          @click="cancel()"
+          @click="clear()"
         >
           Cancel
         </button>
-        <button type="submit">
-          {{ contactGroup ? "Update" : "Add" }} Group
-        </button>
+        <button type="submit">{{ editMode ? "Update" : "Add" }} Group</button>
       </div>
     </form>
   </div>
@@ -36,37 +38,25 @@
 
 <script>
 import { createId } from "@/helpers";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "ContactGroupForm",
   components: {},
-  props: ["contactGroup"],
+  props: [],
   data() {
-    return {
-      name: "",
-      color: ""
-    };
-  },
-  watch: {
-    contactGroup(val) {
-      if (val) {
-        this.name = val.name;
-        this.color = val.color;
-      }
-    }
+    return {};
   },
   computed: {
-    items() {
-      return this.$store.state.contactGroups;
-    }
+    ...mapState({
+      groupId: state => state.contactGroup.id,
+      name: state => state.contactGroup.name,
+      color: state => state.contactGroup.color,
+      editMode: state => !!state.contactGroup.id
+    })
   },
   methods: {
     ...mapMutations(["addContactGroup", "updateContactGroup"]),
-    cancel() {
-      this.clear();
-      this.$emit("cancel", this.contactGroup);
-    },
     clear() {
       this.name = "";
       this.color = "";
@@ -74,27 +64,13 @@ export default {
     onSubmitForm() {
       const { name, color } = this;
 
-      if (this.contactGroup) {
-        const record = {
-          id: this.contactGroup.id,
-          name,
-          color
-        };
-
-        this.updateContactGroup(record);
-        this.clear();
-        this.$emit("submit", record);
+      if (this.editMode) {
+        this.updateContactGroup({ id: this.groupId, name, color });
       } else {
         const id = createId();
-
         const record = { id, name, color };
-
         this.addContactGroup(record);
-        this.$emit("submit", record);
       }
-
-      this.name = "";
-      this.color = "";
     }
   }
 };
