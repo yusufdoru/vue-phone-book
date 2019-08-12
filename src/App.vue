@@ -50,6 +50,10 @@ button {
   }
 }
 
+a {
+  color: #fff;
+}
+
 .btn-mini {
   font-size: 12px;
   padding: 5px;
