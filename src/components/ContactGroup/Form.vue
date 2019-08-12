@@ -22,7 +22,7 @@
           v-if="editMode"
           type="button"
           class="cancel-btn warning"
-          @click="clear()"
+          @click="editContactGroup(-1)"
         >
           Cancel
         </button>
@@ -50,12 +50,16 @@ export default {
     })
   },
   methods: {
-    ...mapMutations("contactGroup", ["addContactGroup", "updateContactGroup"]),
+    ...mapMutations("contactGroup", [
+      "addContactGroup",
+      "editContactGroup",
+      "updateContactGroup"
+    ]),
     onSubmitForm() {
       if (this.editMode) {
         this.updateContactGroup();
       } else {
-        this.contactGroup = createId();
+        this.contactGroup.id = createId();
         this.addContactGroup();
       }
     }

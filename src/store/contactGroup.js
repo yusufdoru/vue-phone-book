@@ -12,7 +12,7 @@ const state = {
     {
       id: "20052019-0602-1508-Infinity-Infinity",
       name: "Family",
-      color: "red"
+      color: "#F00000"
     }
   ]
 };
@@ -22,7 +22,7 @@ export default {
   state,
   mutations: {
     addContactGroup(state) {
-      state.items.push({ ...state.model });
+      state.items = state.items.concat({ ...state.model });
       state.model = { ...ContactGroupModel };
     },
     editContactGroup(state, item) {
@@ -30,10 +30,11 @@ export default {
     },
     updateContactGroup(state) {
       state.items = state.items.map(c => {
-        if (state.model.id === c.id) {
-          return Object.assign({}, state.model);
+        if (state.model.id !== c.id) {
+          return c;
         }
-        return c;
+
+        return Object.assign({}, state.model);
       });
 
       state.model = { ...ContactGroupModel };

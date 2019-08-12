@@ -24,7 +24,7 @@ export default {
   state,
   mutations: {
     addContact(state) {
-      state.items.push({ ...state.model });
+      state.items = state.items.concat({ ...state.model });
       state.model = { ...ContactModel };
     },
     editContact(state, item) {
@@ -32,10 +32,11 @@ export default {
     },
     updateContact(state) {
       state.items = state.items.map(c => {
-        if (state.model.id === c.id) {
-          return Object.assign({}, state.model);
+        if (state.model.id !== c.id) {
+          return c;
         }
-        return c;
+
+        return Object.assign({}, state.model);
       });
 
       state.model = { ...ContactModel };

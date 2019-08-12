@@ -1,7 +1,7 @@
 <template>
   <li>
     <div>
-      <p :style="{ background: item.color }" class="name">
+      <p class="name" :style="{ background: item.color }">
         {{ item.name }}
       </p>
     </div>
@@ -62,32 +62,31 @@ export default {
 .no-record {
   margin-bottom: 25px;
 }
-.contact-groups {
-  margin-bottom: 25px;
-  li {
+li {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  border-radius: 15px;
+  padding: 0px;
+  margin: 15px 0;
+
+  .name {
+    border-radius: 10px;
+    padding: 5px;
+    background: gray;
+  }
+
+  .actions {
     display: flex;
-    justify-content: space-between;
-    list-style: none;
-    border-radius: 15px;
-    padding: 0px;
-    margin: 15px 0;
+    align-items: center;
 
-    .name[style] {
-      padding: 5px;
-      border-radius: 10px;
+    button {
+      margin: 5px;
     }
+  }
 
-    .actions {
-      display: flex;
-
-      button {
-        margin: 5px;
-      }
-    }
-
-    p {
-      margin: 10px 0;
-    }
+  p {
+    margin: 10px 0;
   }
 }
 </style>

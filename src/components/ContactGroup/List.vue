@@ -2,7 +2,7 @@
   <div>
     <h2>Contact Groups</h2>
     <div v-if="!contactGroups.length" class="no-record">
-      No record(s) found.
+      No group(s) found.
     </div>
     <ul v-else class="contact-groups">
       <ContactGroupListItem
@@ -42,30 +42,5 @@ export default {
 }
 .contact-groups {
   margin-bottom: 25px;
-  li {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    border-radius: 15px;
-    padding: 0px;
-    margin: 15px 0;
-
-    .name[style] {
-      padding: 5px;
-      border-radius: 10px;
-    }
-
-    .actions {
-      display: flex;
-
-      button {
-        margin: 5px;
-      }
-    }
-
-    p {
-      margin: 10px 0;
-    }
-  }
 }
 </style>
