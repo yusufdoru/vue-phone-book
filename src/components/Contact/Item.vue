@@ -56,11 +56,7 @@ export default {
     ...mapMutations("contact", ["editContact", "deleteContact"]),
 
     handleEditItem(item) {
-      if (this.editMode) {
-        this.editContact(null);
-      } else {
-        this.editContact(item);
-      }
+      this.editContact(this.editMode ? null : item);
     },
     handleDeleteItem(item) {
       const isOkey = confirm("It will be removed? Are you sure?");

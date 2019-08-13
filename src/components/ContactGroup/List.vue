@@ -37,10 +37,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.no-record {
-  margin-bottom: 25px;
-}
 .contact-groups {
-  margin-bottom: 25px;
 }
 </style>

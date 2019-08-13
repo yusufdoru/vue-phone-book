@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
 
   > div {
     background: #353535;
@@ -67,10 +68,15 @@
     display: flex;
     justify-content: space-between;
     list-style: none;
-    padding: 0px;
     margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
 
-    .group-name {
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .name, .group-name {
       background: gray;
       padding: 5px;
       border-radius: 10px;
@@ -93,11 +99,6 @@
   @media (min-width: 320px) and (max-width: 450px) {
     li {
       flex-direction: column;
-
-      &:nth-of-type(odd) {
-        padding-bottom: 10px;
-        border-bottom: 1px solid gray;
-      }
 
       label {
         flex-direction: column;
