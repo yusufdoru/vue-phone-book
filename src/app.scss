@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -98,13 +99,16 @@ header {
     background: #4d4d4d;
   }
 }
+
 .separator {
   margin: 15px 0;
   border-bottom: 1px solid lightgray;
 }
+
 .warning {
   background: darkorange;
 }
+
 .danger {
   background: red;
 }
