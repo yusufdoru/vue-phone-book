@@ -66,8 +66,7 @@ li {
   display: flex;
   justify-content: space-between;
   list-style: none;
-  border-radius: 15px;
-  padding: 0px;
+  padding: 0;
   margin: 15px 0;
 
   .name {
@@ -87,6 +86,30 @@ li {
 
   p {
     margin: 10px 0;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 450px) {
+  li {
+    flex-direction: column;
+
+    &:nth-of-type(odd) {
+      padding-bottom: 10px;
+      border-bottom: 1px solid gray;
+    }
+
+    label {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .title {
+      margin-bottom: 15px;
+    }
+    .dot {
+      display: none;
+    }
+    input {
+    }
   }
 }
 </style>

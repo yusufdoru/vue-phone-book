@@ -1,0 +1,175 @@
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > div {
+    background: #353535;
+    border-radius: 15px;
+    padding: 15px;
+  }
+  .left {
+    flex: 1;
+  }
+  .content {
+    flex: 2;
+    margin: 0 25px;
+  }
+  .right {
+    flex: 1;
+  }
+
+
+  @media only screen and (max-width: 799px) {
+      flex-direction: column;
+
+      > div {
+        margin-bottom: 25px;
+      }
+      .left {
+      }
+      .content {
+        flex: 1;
+        margin: 0;
+        margin-bottom: 25px;
+      }
+      .right {
+      }
+  }
+
+  @media (min-width: 800px) and (max-width: 1024px) {
+      .left {
+        order: 0;
+        flex: 1 0 33.3%;
+      }
+      .content {
+        order: 3;
+        flex: 1 1 100%;
+        margin: 0;
+        margin-top: 25px;
+      }
+      .right {
+        flex: 1 0 33.3%;
+        order: 2;
+        margin-left: 25px;
+      }
+  }
+
+}
+
+.contacts,
+.contact-groups {
+  .no-record {
+    margin-bottom: 25px;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0px;
+    margin: 15px 0;
+
+    .group-name {
+      background: gray;
+      padding: 5px;
+      border-radius: 10px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+
+      button {
+        margin: 5px;
+      }
+    }
+
+    p {
+      margin: 10px 0;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 450px) {
+    li {
+      flex-direction: column;
+
+      &:nth-of-type(odd) {
+        padding-bottom: 10px;
+        border-bottom: 1px solid gray;
+      }
+
+      label {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .title {
+        margin-bottom: 15px;
+      }
+      .dot {
+        display: none;
+      }
+      input {
+      }
+      .actions {
+        button {
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
+
+.contact-form,
+.contact-group-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 15px;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .title {
+    flex: 0.6;
+    min-width: 110px;
+  }
+  .dot {
+    flex: 0.1;
+  }
+  input,
+  select {
+    flex: 0.9;
+  }
+  .actions {
+    display: flex;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 450px) {
+    label {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .title {
+      margin-bottom: 15px;
+    }
+    .dot {
+      display: none;
+    }
+    input {
+    }
+
+    .actions {
+      button {
+        min-width: auto;
+      }
+    }
+  }
+}

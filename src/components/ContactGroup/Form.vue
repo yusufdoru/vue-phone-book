@@ -69,49 +69,9 @@ export default {
 
 <style lang="scss" scoped>
 .contact-group-form {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  margin-bottom: 15px;
-
-  label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  .title {
-    flex: 0.6;
-    min-width: 110px;
-  }
-  .dot {
-    flex: 0.1;
-  }
-  input {
-    flex: 0.9;
-  }
-}
-.actions {
-  display: flex;
-
-  button {
-    flex: 1;
-  }
 }
 @media (min-width: 320px) and (max-width: 450px) {
-  .contact-form {
-    label {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .title {
-      margin-bottom: 15px;
-    }
-    .dot {
-      display: none;
-    }
-    input {
-    }
+  .contact-group-form {
   }
 }
 </style>

@@ -73,36 +73,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.no-record {
-  margin-bottom: 25px;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-  border-radius: 15px;
-  padding: 0px;
-  margin: 15px 0;
-
-  .group-name {
-    background: gray;
-    padding: 5px;
-    border-radius: 10px;
-  }
-
-  .actions {
-    display: flex;
-    align-items: center;
-
-    button {
-      margin: 5px;
-    }
-  }
-
-  p {
-    margin: 10px 0;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

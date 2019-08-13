@@ -1,10 +1,13 @@
 <template>
   <div class="about">
-    <h1>
+    <p>
       Github Repo:
+    </p>
+    <br />
+    <p>
       <a href="https://github.com/yusufdoru/vue-phone-book/"
         >https://github.com/yusufdoru/vue-phone-book/</a
       >
-    </h1>
+    </p>
   </div>
 </template>
