@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="contact-groups-container">
     <h2>Contact Groups</h2>
     <div v-if="!contactGroups.length" class="no-record">
       No group(s) found.

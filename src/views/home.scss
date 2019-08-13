@@ -23,7 +23,6 @@
     flex: 1;
   }
 
-
   @media only screen and (max-width: 799px) {
     align-items: stretch;
     flex-direction: column;
@@ -41,7 +40,6 @@
     .right {
     }
   }
-
   @media (min-width: 800px) and (max-width: 1024px) {
     .left {
       order: 0;
@@ -59,15 +57,16 @@
       margin-left: 25px;
     }
   }
+}
 
+.contacts-container, .contact-groups-container {
+  .no-record {
+    margin-bottom: 25px;
+  }
 }
 
 .contacts,
 .contact-groups {
-  .no-record {
-    margin-bottom: 25px;
-  }
-
   li {
     display: flex;
     justify-content: space-between;

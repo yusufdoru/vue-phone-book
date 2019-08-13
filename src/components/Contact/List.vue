@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="contacts-container">
     <h2>Contacts</h2>
-    <div v-if="!contacts.length">No contact(s) found.</div>
+    <div v-if="!contacts.length" class="no-record">No contact(s) found.</div>
     <ul v-else class="contacts">
       <ContactListItem
         v-for="(contact, index) in contacts"
