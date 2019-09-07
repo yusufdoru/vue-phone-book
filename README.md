@@ -1,4 +1,28 @@
-# vue-phone-book
+# Vue Phone Book Web App
+
+Vue Phone Book is a web app where you can save and group your phones.
+
+## Used:
+
+Vuex
+Vue Router
+vue-the-mask
+
+## TODOS:
+
+Each process will be stored in the browser itself using a plugin such as localforage. Thus, the data will not be deleted when the page is refreshed.
+
+Profile photos of people can be uploaded.
+
+Individual color assignment
+
+Export all information in CSV (Excel) format
+
+Add contact to favorites
+
+Membership system will be added to the project. Users will be able to log in to their account and add people.
+
+### I expect your Pull requests :)
 
 ## Project setup
 ```
@@ -14,16 +38,3 @@ yarn run serve
 ```
 yarn run build
 ```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
